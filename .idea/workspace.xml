@@ -106,11 +106,11 @@
       <file leaf-file-name="NewTaskForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+            <state relative-caret-position="75">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
-                <element signature="e#897#1410#0" expanded="true" />
-                <element signature="e#1409#1410#0" expanded="true" />
+                <element signature="e#898#1411#0" expanded="true" />
+                <element signature="e#1410#1411#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2689,11 +2689,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+        <state relative-caret-position="75">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
-            <element signature="e#897#1410#0" expanded="true" />
-            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#898#1411#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
           </folding>
         </state>
       </provider>
