@@ -17,15 +17,18 @@ public class Task implements Parcelable {
     private String description;
     private Date date;
     private Time time;
+    private Boolean isDone = false;
 
     public Task() {
-
+        isDone = false;
     }
 
-    protected Task(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        description = in.readString();
+    public Boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(Boolean done) {
+        isDone = done;
     }
 
     public int getId() {
@@ -71,14 +74,27 @@ public class Task implements Parcelable {
 
     /*
 
-        Parcelable Implementation
+            PARCELABLE IMPLEMENTATION
 
      */
+
+    protected Task(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        description = in.readString();
+        date = new Date(in.readLong());
+        time = new Time(in.readLong());
+        isDone = in.readInt() != 0;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(description);
+        dest.writeLong(date.getTime());
+        dest.writeLong(time.getTime());
+        dest.writeInt((isDone ? 1 : 0));
     }
 
     @Override
