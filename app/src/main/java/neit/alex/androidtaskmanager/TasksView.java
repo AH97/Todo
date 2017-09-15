@@ -1,5 +1,6 @@
 package neit.alex.androidtaskmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class TasksView extends AppCompatActivity {
+
+    static final int NEW_TASK = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,8 @@ public class TasksView extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_addNew) {
-            return true;
+            Intent i = new Intent(this, NewTaskForm.class);
+            startActivityForResult(i, NEW_TASK);
         }
 
         return super.onOptionsItemSelected(item);

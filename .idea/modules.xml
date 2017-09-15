@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidTaskManager.iml" filepath="$PROJECT_DIR$/AndroidTaskManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-task-manager.iml" filepath="$PROJECT_DIR$/android-task-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
