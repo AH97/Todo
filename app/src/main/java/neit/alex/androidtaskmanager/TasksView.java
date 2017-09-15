@@ -13,6 +13,7 @@ import android.view.MenuItem;
 public class TasksView extends AppCompatActivity {
 
     static final int NEW_TASK = 10;
+    static final int TASK_INFO = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
