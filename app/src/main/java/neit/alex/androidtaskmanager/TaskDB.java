@@ -27,8 +27,8 @@ public class TaskDB extends SQLiteOpenHelper {
     private static final String COL_TIME = "time";
     private static final String COL_DONE = "isDone";
 
-    public TaskDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DB_NAME, factory, VERSION);
+    public TaskDB(Context context) {
+        super(context, DB_NAME, null, VERSION);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class TaskDB extends SQLiteOpenHelper {
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " TEXT," +
                 COL_DESC + " TEXT," +
-                COL_DATE + " TEXT," +
-                COL_TIME + " TEXT," +
+                COL_DATE + " INTEGER," +
+                COL_TIME + " INTEGER," +
                 COL_DONE + " INTEGER " +
                 ");";
 
@@ -59,8 +59,8 @@ public class TaskDB extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COL_NAME, task.getName());
         values.put(COL_DESC, task.getDescription());
-        values.put(COL_DATE, task.getDate().toString());
-        values.put(COL_NAME, task.getName().toString());
+        values.put(COL_DATE, task.getDate());
+        values.put(COL_TIME, task.getTime());
         values.put(COL_DONE, getIntBoolean(task.getDone()));
 
         SQLiteDatabase db = getWritableDatabase();
@@ -93,8 +93,8 @@ public class TaskDB extends SQLiteOpenHelper {
         task.setId(cursor.getInt(0));
         task.setName(cursor.getString(1));
         task.setDescription(cursor.getString(2));
-        task.setDate(Date.valueOf(cursor.getString(3)));
-        task.setTime(Time.valueOf(cursor.getString(4)));
+        task.setDateLong(cursor.getLong(3));
+        task.setTimeLong(cursor.getLong(4));
         task.setDone(getBoolean(cursor.getInt(5)));
 
         return task;
@@ -114,8 +114,8 @@ public class TaskDB extends SQLiteOpenHelper {
                 task.setId(cursor.getInt(0));
                 task.setName(cursor.getString(1));
                 task.setDescription(cursor.getString(2));
-                task.setDate(Date.valueOf(cursor.getString(3)));
-                task.setTime(Time.valueOf(cursor.getString(4)));
+                task.setDateLong(cursor.getLong(3));
+                task.setTimeLong(cursor.getLong(4));
                 task.setDone(getBoolean(cursor.getInt(5)));
 
                 tasks.add(task);

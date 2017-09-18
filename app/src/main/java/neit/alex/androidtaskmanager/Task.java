@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -12,11 +13,14 @@ import java.util.Date;
 
 public class Task implements Parcelable {
 
+    private Calendar dCal;
+    private Calendar tCal;
+
     private int id;
     private String name;
     private String description;
-    private Date date;
-    private Time time;
+    private long date;
+    private long time;
     private Boolean isDone = false;
 
     public Task() {
@@ -56,19 +60,34 @@ public class Task implements Parcelable {
         this.description = description;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(int year, int month, int day) {
+        dCal.add(Calendar.YEAR, year);
+        dCal.add(Calendar.MONTH, month);
+        dCal.add(Calendar.DAY_OF_MONTH, day);
+
+        this.date = dCal.getTimeInMillis();
+    }
+
+    public void setDateLong(long date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(int hour, int minute) {
+        tCal.add(Calendar.HOUR, hour);
+        tCal.add(Calendar.MINUTE, minute);
+
+        this.time = tCal.getTimeInMillis();
+    }
+
+    public void setTimeLong(long time) {
         this.time = time;
     }
 
@@ -82,8 +101,8 @@ public class Task implements Parcelable {
         id = in.readInt();
         name = in.readString();
         description = in.readString();
-        date = new Date(in.readLong());
-        time = new Time(in.readLong());
+        date = in.readLong();
+        time = in.readLong();
         isDone = in.readInt() != 0;
     }
 
@@ -92,8 +111,8 @@ public class Task implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeLong(date.getTime());
-        dest.writeLong(time.getTime());
+        dest.writeLong(date);
+        dest.writeLong(time);
         dest.writeInt((isDone ? 1 : 0));
     }
 

@@ -6,9 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class TasksView extends AppCompatActivity {
 
@@ -46,5 +48,18 @@ public class TasksView extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NEW_TASK) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Toast notif = Toast.makeText(this, data.getStringExtra("return"), Toast.LENGTH_SHORT);
+                notif.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+                notif.show();
+            }
+        }
     }
 }
