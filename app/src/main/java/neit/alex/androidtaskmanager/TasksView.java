@@ -84,10 +84,6 @@ public class TasksView extends AppCompatActivity {
             Intent i = new Intent(this, NewTaskForm.class);
             startActivityForResult(i, NEW_TASK);
         }
-        else if (id == R.id.menu_refresh) {
-            Intent intent = new Intent(getApplicationContext(),TasksView.class);
-            getApplicationContext().startActivity(intent);
-        }
 
         return super.onOptionsItemSelected(item);
     }

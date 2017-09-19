@@ -4,15 +4,8 @@
     tools:context="neit.alex.androidtaskmanager.TasksView">
     <item
         android:id="@+id/menu_addNew"
-        android:icon="@drawable/ic_add_black_24dp"
+        android:icon="@mipmap/icon_add"
         android:orderInCategory="101"
         android:title="Add New"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/menu_refresh"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:orderInCategory="101"
-        android:title="Add New"
-        app:showAsAction="never" />
 </menu>

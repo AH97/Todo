@@ -56,7 +56,7 @@ public class FocusView extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),TaskInfo.class);
 
-                intent.putExtra("selectedTask", tasks.get(i));
+                intent.putExtra("selectedTask", db.read(tasks.get(i).getId()));
                 getApplicationContext().startActivity(intent);
             }
         });
