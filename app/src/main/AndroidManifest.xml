@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TaskInfo" />
-        <activity android:name=".NewTaskForm"></activity>
+        <activity android:name=".NewTaskForm" />
+        <activity android:name=".FocusView"></activity>
     </application>
 
 </manifest>

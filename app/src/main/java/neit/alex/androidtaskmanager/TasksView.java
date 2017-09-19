@@ -10,12 +10,24 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class TasksView extends AppCompatActivity {
 
     static final int NEW_TASK = 10;
     static final int TASK_INFO = 20;
+
+    TaskDB db;
+
+    static ArrayList<String> dates;
+    static ArrayList<Task> tasks;
+    static ArrayAdapter<String> datesAdapter;
+
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +36,15 @@ public class TasksView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // oncreate code here
+        listView = (ListView) findViewById(R.id.lv_dates);
+
+        db = new TaskDB(this);
+        dates = db.readAllDates();
+
+        datesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dates);
+        listView.setAdapter(datesAdapter);
+
+        listView.set
     }
 
     @Override
@@ -46,6 +66,10 @@ public class TasksView extends AppCompatActivity {
             Intent i = new Intent(this, NewTaskForm.class);
             startActivityForResult(i, NEW_TASK);
         }
+        else if (id == R.id.menu_refresh) {
+            Intent intent = new Intent(getApplicationContext(),TasksView.class);
+            getApplicationContext().startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -59,6 +83,9 @@ public class TasksView extends AppCompatActivity {
                 Toast notif = Toast.makeText(this, data.getStringExtra("return"), Toast.LENGTH_SHORT);
                 notif.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
                 notif.show();
+
+                Intent intent = new Intent(getApplicationContext(),TasksView.class);
+                getApplicationContext().startActivity(intent);
             }
         }
     }

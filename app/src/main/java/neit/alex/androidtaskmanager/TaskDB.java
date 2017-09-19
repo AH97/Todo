@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Alex on 9/14/2017.
@@ -98,6 +100,33 @@ public class TaskDB extends SQLiteOpenHelper {
         task.setDone(getBoolean(cursor.getInt(5)));
 
         return task;
+    }
+
+    public ArrayList<String> readAllDates() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        //formatting
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+
+
+        ArrayList<String> dates = new ArrayList<>();
+
+        String query = "SELECT DISTINCT " + COL_DATE + " FROM " + TABLE + " ORDER BY " + COL_DATE + " ASC";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if ( cursor.moveToFirst() ) {
+            do {
+                cal.setTimeInMillis(cursor.getLong(0));
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                dates.add(df.format(cal.getTime()));
+            } while ( cursor.moveToNext() );
+        }
+
+        return dates;
     }
 
     public ArrayList<Task> readAll() {
