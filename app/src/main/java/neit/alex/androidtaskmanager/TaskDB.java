@@ -125,7 +125,7 @@ public class TaskDB extends SQLiteOpenHelper {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " LIKE " + date;
+        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " = " + date;
         Cursor cursor = db.rawQuery(query, null);
 
         if ( cursor.moveToFirst() ) {
