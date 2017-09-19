@@ -51,10 +51,15 @@ public class TasksView extends AppCompatActivity {
         }
         listView.setAdapter(datesAdapter);
 
+
+        // List view item click
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                Intent intent = new Intent(getApplicationContext(),FocusView.class);
+                intent.putExtra("calendar", dates.get(i));
+                getApplicationContext().startActivity(intent);
             }
         });
     }
