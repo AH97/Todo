@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,14 +14,17 @@ import java.util.Date;
 
 public class Task implements Parcelable {
 
+    private SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+    private SimpleDateFormat tf = new SimpleDateFormat("hh:mm a");
+
     private Calendar dCal;
     private Calendar tCal;
 
     private int id;
     private String name;
     private String description;
-    private long date;
-    private long time;
+    private String date;
+    private String time;
     private Boolean isDone = false;
 
     public Task() {
@@ -60,7 +64,7 @@ public class Task implements Parcelable {
         this.description = description;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -69,14 +73,14 @@ public class Task implements Parcelable {
         dCal.add(Calendar.MONTH, month);
         dCal.add(Calendar.DAY_OF_MONTH, day);
 
-        this.date = dCal.getTimeInMillis();
+        this.date = df.format(dCal.getTime());
     }
 
-    public void setDateLong(long date) {
+    public void setDateLong(String date) {
         this.date = date;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -84,10 +88,10 @@ public class Task implements Parcelable {
         tCal.add(Calendar.HOUR, hour);
         tCal.add(Calendar.MINUTE, minute);
 
-        this.time = tCal.getTimeInMillis();
+        this.time = tf.format(tCal.getTime());
     }
 
-    public void setTimeLong(long time) {
+    public void setTimeLong(String time) {
         this.time = time;
     }
 
@@ -101,8 +105,8 @@ public class Task implements Parcelable {
         id = in.readInt();
         name = in.readString();
         description = in.readString();
-        date = in.readLong();
-        time = in.readLong();
+        date = in.readString();
+        time = in.readString();
         isDone = in.readInt() != 0;
     }
 
@@ -111,8 +115,8 @@ public class Task implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeLong(date);
-        dest.writeLong(time);
+        dest.writeString(date);
+        dest.writeString(time);
         dest.writeInt((isDone ? 1 : 0));
     }
 

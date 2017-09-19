@@ -41,8 +41,8 @@ public class TaskDB extends SQLiteOpenHelper {
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " TEXT," +
                 COL_DESC + " TEXT," +
-                COL_DATE + " INTEGER," +
-                COL_TIME + " INTEGER," +
+                COL_DATE + " TEXT," +
+                COL_TIME + " TEXT," +
                 COL_DONE + " INTEGER " +
                 ");";
 
@@ -121,7 +121,7 @@ public class TaskDB extends SQLiteOpenHelper {
         return dates;
     }
 
-    public ArrayList<Task> readAll() {
+    public ArrayList<Task> readAll(long date) {
         SQLiteDatabase db = getWritableDatabase();
 
         ArrayList<Task> tasks = new ArrayList<>();

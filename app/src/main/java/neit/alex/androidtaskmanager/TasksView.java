@@ -59,7 +59,7 @@ public class TasksView extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),FocusView.class);
 
-                intent.putExtra("calendar", dates.get(i));
+                intent.putExtra("selectedDate", df.format(dates.get(i)));
                 getApplicationContext().startActivity(intent);
             }
         });
