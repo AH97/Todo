@@ -95,38 +95,37 @@ public class TaskDB extends SQLiteOpenHelper {
         task.setId(cursor.getInt(0));
         task.setName(cursor.getString(1));
         task.setDescription(cursor.getString(2));
-        task.setDateLong(cursor.getLong(3));
-        task.setTimeLong(cursor.getLong(4));
+        task.setDateLong(cursor.getString(3));
+        task.setTimeLong(cursor.getString(4));
         task.setDone(getBoolean(cursor.getInt(5)));
 
         return task;
     }
 
-    public ArrayList<Calendar> readAllDates() {
+    public ArrayList<String> readAllDates() {
         SQLiteDatabase db = getWritableDatabase();
 
         //formatting
         Calendar cal = Calendar.getInstance();
-        ArrayList<Calendar> dates = new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<>();
 
         String query = "SELECT DISTINCT " + COL_DATE + " FROM " + TABLE + " ORDER BY " + COL_DATE + " ASC";
         Cursor cursor = db.rawQuery(query, null);
 
         if ( cursor.moveToFirst() ) {
             do {
-                cal.setTimeInMillis(cursor.getLong(0));
-                dates.add(cal);
+                dates.add(cursor.getString(0));
             } while ( cursor.moveToNext() );
         }
         return dates;
     }
 
-    public ArrayList<Task> readAll(long date) {
+    public ArrayList<Task> readAll(String date) {
         SQLiteDatabase db = getWritableDatabase();
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE;
+        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " LIKE " + date;
         Cursor cursor = db.rawQuery(query, null);
 
         if ( cursor.moveToFirst() ) {
@@ -135,8 +134,8 @@ public class TaskDB extends SQLiteOpenHelper {
                 task.setId(cursor.getInt(0));
                 task.setName(cursor.getString(1));
                 task.setDescription(cursor.getString(2));
-                task.setDateLong(cursor.getLong(3));
-                task.setTimeLong(cursor.getLong(4));
+                task.setDateLong(cursor.getString(3));
+                task.setTimeLong(cursor.getString(4));
                 task.setDone(getBoolean(cursor.getInt(5)));
 
                 tasks.add(task);

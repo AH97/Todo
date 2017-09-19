@@ -27,7 +27,7 @@ public class TasksView extends AppCompatActivity {
     TaskDB db;
 
     SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
-    static ArrayList<Calendar> dates;
+    static ArrayList<String> dates;
     static ArrayList<Task> tasks;
     static ArrayAdapter<String> datesAdapter;
 
@@ -47,7 +47,7 @@ public class TasksView extends AppCompatActivity {
 
         datesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         for (int i=0; i<dates.size(); i++) {
-            datesAdapter.add(df.format(dates.get(i).getTime()));
+            datesAdapter.add(dates.get(i));
         }
         listView.setAdapter(datesAdapter);
 
@@ -59,7 +59,7 @@ public class TasksView extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),FocusView.class);
 
-                intent.putExtra("selectedDate", df.format(dates.get(i)));
+                intent.putExtra("selectedDate", dates.get(i));
                 getApplicationContext().startActivity(intent);
             }
         });
