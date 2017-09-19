@@ -107,8 +107,6 @@ public class TaskDB extends SQLiteOpenHelper {
 
         //formatting
         Calendar cal = Calendar.getInstance();
-
-
         ArrayList<Calendar> dates = new ArrayList<>();
 
         String query = "SELECT DISTINCT " + COL_DATE + " FROM " + TABLE + " ORDER BY " + COL_DATE + " ASC";
@@ -120,7 +118,6 @@ public class TaskDB extends SQLiteOpenHelper {
                 dates.add(cal);
             } while ( cursor.moveToNext() );
         }
-
         return dates;
     }
 
