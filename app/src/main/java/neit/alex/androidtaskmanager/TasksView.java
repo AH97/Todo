@@ -58,7 +58,11 @@ public class TasksView extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent(getApplicationContext(),FocusView.class);
-                intent.putExtra("calendar", dates.get(i));
+                
+                Bundle calendar = new Bundle();
+                calendar.putSerializable("calendar", dates.get(i));
+
+                intent.putExtra("calendar", calendar);
                 getApplicationContext().startActivity(intent);
             }
         });
