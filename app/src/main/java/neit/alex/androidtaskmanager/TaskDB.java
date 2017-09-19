@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class TaskDB extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DB_NAME = "Tasks.db";
     private static final String TABLE = "tasks";
 
