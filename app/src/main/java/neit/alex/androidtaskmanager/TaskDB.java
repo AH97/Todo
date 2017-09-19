@@ -102,7 +102,7 @@ public class TaskDB extends SQLiteOpenHelper {
         return task;
     }
 
-    public ArrayList<String> readAllDates() {
+    public ArrayList<Calendar> readAllDates() {
         SQLiteDatabase db = getWritableDatabase();
 
         //formatting
@@ -110,7 +110,7 @@ public class TaskDB extends SQLiteOpenHelper {
         SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
 
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<Calendar> dates = new ArrayList<>();
 
         String query = "SELECT DISTINCT " + COL_DATE + " FROM " + TABLE + " ORDER BY " + COL_DATE + " ASC";
         Cursor cursor = db.rawQuery(query, null);
@@ -118,11 +118,7 @@ public class TaskDB extends SQLiteOpenHelper {
         if ( cursor.moveToFirst() ) {
             do {
                 cal.setTimeInMillis(cursor.getLong(0));
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                dates.add(df.format(cal.getTime()));
+                dates.add(cal);
             } while ( cursor.moveToNext() );
         }
 

@@ -10,11 +10,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TasksView extends AppCompatActivity {
 
@@ -23,7 +26,8 @@ public class TasksView extends AppCompatActivity {
 
     TaskDB db;
 
-    static ArrayList<String> dates;
+    SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+    static ArrayList<Calendar> dates;
     static ArrayList<Task> tasks;
     static ArrayAdapter<String> datesAdapter;
 
@@ -41,10 +45,18 @@ public class TasksView extends AppCompatActivity {
         db = new TaskDB(this);
         dates = db.readAllDates();
 
-        datesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dates);
+        datesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        for (int i=0; i<dates.size(); i++) {
+            datesAdapter.add(df.format(dates.get(i).getTime()));
+        }
         listView.setAdapter(datesAdapter);
 
-        listView.set
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
     @Override
