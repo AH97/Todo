@@ -107,7 +107,6 @@ public class TaskDB extends SQLiteOpenHelper {
 
         //formatting
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
 
 
         ArrayList<Calendar> dates = new ArrayList<>();
