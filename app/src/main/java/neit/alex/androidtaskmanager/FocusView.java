@@ -5,8 +5,12 @@ import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +25,7 @@ public class FocusView extends AppCompatActivity {
     ArrayAdapter<String> tasksAdapter;
 
     Calendar calendar;
+    Date date;
     SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
 
     ListView listView;
@@ -36,7 +41,7 @@ public class FocusView extends AppCompatActivity {
         db = new TaskDB(this);
 
         Intent intent = new Intent();
-        String selectedDate = intent.getStringExtra("selectedDate");
+        String selectedDate = getIntent().getStringExtra("selectedDate");
 
         tasks = db.readAll(selectedDate);
         tasksAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
@@ -45,5 +50,15 @@ public class FocusView extends AppCompatActivity {
         }
         listView.setAdapter(tasksAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(getApplicationContext(),TaskInfo.class);
+
+                intent.putExtra("selectedTask", tasks.get(i));
+                getApplicationContext().startActivity(intent);
+            }
+        });
     }
 }

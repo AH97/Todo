@@ -95,8 +95,8 @@ public class TaskDB extends SQLiteOpenHelper {
         task.setId(cursor.getInt(0));
         task.setName(cursor.getString(1));
         task.setDescription(cursor.getString(2));
-        task.setDateLong(cursor.getString(3));
-        task.setTimeLong(cursor.getString(4));
+        task.setDate(cursor.getString(3));
+        task.setTime(cursor.getString(4));
         task.setDone(getBoolean(cursor.getInt(5)));
 
         return task;
@@ -125,7 +125,7 @@ public class TaskDB extends SQLiteOpenHelper {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " = " + date;
+        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " = \"" + date + "\"";
         Cursor cursor = db.rawQuery(query, null);
 
         if ( cursor.moveToFirst() ) {
@@ -134,8 +134,8 @@ public class TaskDB extends SQLiteOpenHelper {
                 task.setId(cursor.getInt(0));
                 task.setName(cursor.getString(1));
                 task.setDescription(cursor.getString(2));
-                task.setDateLong(cursor.getString(3));
-                task.setTimeLong(cursor.getString(4));
+                task.setDate(cursor.getString(3));
+                task.setTime(cursor.getString(4));
                 task.setDone(getBoolean(cursor.getInt(5)));
 
                 tasks.add(task);

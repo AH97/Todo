@@ -68,15 +68,7 @@ public class Task implements Parcelable {
         return date;
     }
 
-    public void setDate(int year, int month, int day) {
-        dCal.add(Calendar.YEAR, year);
-        dCal.add(Calendar.MONTH, month);
-        dCal.add(Calendar.DAY_OF_MONTH, day);
-
-        this.date = df.format(dCal.getTime());
-    }
-
-    public void setDateLong(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -84,14 +76,7 @@ public class Task implements Parcelable {
         return time;
     }
 
-    public void setTime(int hour, int minute) {
-        tCal.add(Calendar.HOUR, hour);
-        tCal.add(Calendar.MINUTE, minute);
-
-        this.time = tf.format(tCal.getTime());
-    }
-
-    public void setTimeLong(String time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

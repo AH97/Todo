@@ -104,8 +104,8 @@ public class NewTaskForm extends AppCompatActivity {
 
                 task.setName(name.getText().toString());
                 task.setDescription(desc.getText().toString());
-                task.setDateLong(strDate);
-                task.setTimeLong(strTime);
+                task.setDate(strDate);
+                task.setTime(strTime);
 
                 db.create(task);
                 finish();
