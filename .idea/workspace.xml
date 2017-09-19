@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76800f32-7659-45a0-94fb-60b44fcf770e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/FocusView.java" afterPath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/FocusView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/Task.java" afterPath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TaskDB.java" afterPath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TaskDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TasksView.java" afterPath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TasksView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java" afterPath="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java" />
     </list>
     <ignored path="AndroidTaskManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -144,11 +139,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Task.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Task.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/Task.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+            <state relative-caret-position="799">
+              <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
               <folding>
                 <element signature="method#getName#0;class#Task#0" expanded="false" />
                 <element signature="e#1899#1900#0" expanded="true" />
@@ -158,11 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewTaskForm.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NewTaskForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-779">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="71">
+              <caret line="85" column="66" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -2047,7 +2042,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_layout_dates.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_new_task_form.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/BlankFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_layout_tasks.xml" />
@@ -2056,6 +2050,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/FocusView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TaskDB.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/Task.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java" />
       </list>
     </option>
   </component>
@@ -3010,14 +3005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-779">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/TaskDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -3030,13 +3017,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/Task.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+        <state relative-caret-position="799">
+          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
           <folding>
             <element signature="method#getName#0;class#Task#0" expanded="false" />
             <element signature="e#1899#1900#0" expanded="true" />
             <element signature="e#1931#1932#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/neit/alex/androidtaskmanager/NewTaskForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="85" column="66" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -24,8 +24,8 @@ public class NewTaskForm extends AppCompatActivity {
 
     Task task;
 
-    long longDate;
-    long longTime;
+    String strTime;
+    String strDate;
 
     EditText name, desc, date, time;
     Button submit;
@@ -57,9 +57,8 @@ public class NewTaskForm extends AppCompatActivity {
                         Calendar newDate = Calendar.getInstance();
                         newDate.set(selYear, selMonth, selDay);
 
-                        longDate = newDate.getTimeInMillis();
-
                         SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+                        strDate = df.format(newDate.getTime());
                         date.setText(df.format(newDate.getTime()));
                     }
                 }, year, month, day);
@@ -84,9 +83,8 @@ public class NewTaskForm extends AppCompatActivity {
                         newTime.set(Calendar.HOUR, selHour);
                         newTime.set(Calendar.MINUTE, selMin);
 
-                        longTime = newTime.getTimeInMillis();
-
                         SimpleDateFormat df = new SimpleDateFormat("hh:mm a");
+                        strTime = df.format(newTime.getTime());
                         time.setText(df.format(newTime.getTime()));
                     }
                 }, hour, minute, false);
@@ -106,8 +104,8 @@ public class NewTaskForm extends AppCompatActivity {
 
                 task.setName(name.getText().toString());
                 task.setDescription(desc.getText().toString());
-                task.setDateLong(longDate);
-                task.setTimeLong(longTime);
+                task.setDateLong(strDate);
+                task.setTimeLong(strTime);
 
                 db.create(task);
                 finish();
