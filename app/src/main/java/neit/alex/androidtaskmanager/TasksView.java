@@ -67,7 +67,7 @@ public class TasksView extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),TaskInfo.class);
 
-                intent.putExtra("selectedTask", db.read(tasks.get(i).getId()));
+                intent.putExtra("selectedTask", tasks.get(i).getId());
                 getApplicationContext().startActivity(intent);
             }
         });

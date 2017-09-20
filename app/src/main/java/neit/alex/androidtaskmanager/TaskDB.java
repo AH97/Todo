@@ -81,10 +81,10 @@ public class TaskDB extends SQLiteOpenHelper {
         return db.update(TABLE, values, COL_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
-    public int destroy(int id) {
+    public int destroy(Task task) {
         SQLiteDatabase db = getWritableDatabase();
 
-        return db.delete(TABLE, COL_ID + " = ?", new String[]{String.valueOf(id)});
+        return db.delete(TABLE, COL_ID + " = ?", new String[]{String.valueOf(task.getId())});
     }
 
     public Task read(int id) {
