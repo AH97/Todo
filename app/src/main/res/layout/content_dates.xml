@@ -6,14 +6,11 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="neit.alex.androidtaskmanager.TasksView"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_dates"
+    android:orientation="vertical">
 
     <ListView
-        android:id="@+id/lv_dates"
+        android:id="@+id/tasksView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="8dp" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>

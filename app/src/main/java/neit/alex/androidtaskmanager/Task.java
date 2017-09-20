@@ -22,7 +22,6 @@ public class Task implements Parcelable {
 
     private int id;
     private String name;
-    private String description;
     private String date;
     private String time;
     private Boolean isDone = false;
@@ -56,14 +55,6 @@ public class Task implements Parcelable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDate() {
         return date;
     }
@@ -89,7 +80,6 @@ public class Task implements Parcelable {
     protected Task(Parcel in) {
         id = in.readInt();
         name = in.readString();
-        description = in.readString();
         date = in.readString();
         time = in.readString();
         isDone = in.readInt() != 0;
@@ -99,7 +89,6 @@ public class Task implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
-        dest.writeString(description);
         dest.writeString(date);
         dest.writeString(time);
         dest.writeInt((isDone ? 1 : 0));

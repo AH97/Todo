@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="neit.alex.androidtaskmanager.TasksView">
     <item
-        android:id="@+id/menu_addNew"
-        android:icon="@mipmap/icon_add"
+        android:id="@+id/menu_settings"
         android:orderInCategory="101"
-        android:title="Add New"
-        app:showAsAction="always" />
+        android:title="Settings"
+        app:showAsAction="never" />
 </menu>

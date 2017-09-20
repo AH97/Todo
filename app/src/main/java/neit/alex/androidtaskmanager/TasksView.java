@@ -1,12 +1,15 @@
 package neit.alex.androidtaskmanager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +20,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import static android.R.attr.data;
 
 public class TasksView extends AppCompatActivity {
 
@@ -25,41 +29,44 @@ public class TasksView extends AppCompatActivity {
     static final int TASK_INFO = 20;
 
     TaskDB db;
+    ListView list;
 
     SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
-    static ArrayList<String> dates;
     static ArrayList<Task> tasks;
-    static ArrayAdapter<String> datesAdapter;
-
-    ListView listView;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dates);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        listView = (ListView) findViewById(R.id.lv_dates);
-
         db = new TaskDB(this);
-        dates = db.readAllDates();
+        tasks = db.readAll();
 
-        datesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        for (int i=0; i<dates.size(); i++) {
-            datesAdapter.add(dates.get(i));
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), NewTaskForm.class);
+                startActivityForResult(i, NEW_TASK);
+            }
+        });
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        list = (ListView) findViewById(R.id.tasksView);
+
+        for (int i=0; i<tasks.size(); i++) {
+            adapter.add(tasks.get(i).getId() + " " + tasks.get(i).getName() + "\nTask due by " + tasks.get(i).getDate() + " at " + tasks.get(i).getTime());
         }
-        listView.setAdapter(datesAdapter);
 
-
-        // List view item click
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), TaskInfo.class);
 
-                Intent intent = new Intent(getApplicationContext(),FocusView.class);
-
-                intent.putExtra("selectedDate", dates.get(i));
+                intent.putExtra("selectedTask", db.read(tasks.get(adapterView.getSelectedItemPosition()+1).getId()));
                 getApplicationContext().startActivity(intent);
             }
         });
@@ -80,9 +87,8 @@ public class TasksView extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_addNew) {
-            Intent i = new Intent(this, NewTaskForm.class);
-            startActivityForResult(i, NEW_TASK);
+        if (id == R.id.menu_settings) {
+
         }
 
         return super.onOptionsItemSelected(item);

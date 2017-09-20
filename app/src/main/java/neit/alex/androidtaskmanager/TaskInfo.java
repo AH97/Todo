@@ -3,7 +3,6 @@ package neit.alex.androidtaskmanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -13,29 +12,23 @@ import android.widget.TextView;
 
 public class TaskInfo extends AppCompatActivity {
 
-    ArrayAdapter<String> adapter;
-
-    ListView listView;
-    TextView name, desc, date, time;
-    Button edit, done;
+    TaskDB db;
+    Task task;
+    TextView titleView, dueInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_info);
+        setContentView(R.layout.activity_info);
 
-        listView = (ListView) findViewById(R.id.lv_taskInfo);
+        titleView = (TextView) findViewById(R.id.titleView);
+        dueInfo = (TextView) findViewById(R.id.dueInfo);
 
         Intent intent = new Intent();
-        Task task = getIntent().getExtras().getParcelable("selectedTask");
+        Task task = intent.getExtras().getParcelable("selectedTask");
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        adapter.add(task.getName());
-        adapter.add(task.getDescription());
-        adapter.add("Event on " + task.getDate());
-        adapter.add("Event at " + task.getTime());
-
-        listView.setAdapter(adapter);
+        titleView.setText(task.getName());
+        dueInfo.setText("Task due by " + task.getDate().toString() + " at " + task.getTime().toString());
     }
 
     @Override

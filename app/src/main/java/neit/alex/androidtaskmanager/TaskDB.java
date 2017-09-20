@@ -18,13 +18,12 @@ import java.util.Calendar;
 
 public class TaskDB extends SQLiteOpenHelper {
 
-    private static final int VERSION = 2;
+    private static final int VERSION = 4;
     private static final String DB_NAME = "Tasks.db";
     private static final String TABLE = "tasks";
 
     private static final String COL_ID = "_id";
     private static final String COL_NAME = "name";
-    private static final String COL_DESC = "description";
     private static final String COL_DATE = "date";
     private static final String COL_TIME = "time";
     private static final String COL_DONE = "isDone";
@@ -40,7 +39,6 @@ public class TaskDB extends SQLiteOpenHelper {
                 TABLE + "(" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " TEXT," +
-                COL_DESC + " TEXT," +
                 COL_DATE + " TEXT," +
                 COL_TIME + " TEXT," +
                 COL_DONE + " INTEGER " +
@@ -60,7 +58,6 @@ public class TaskDB extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COL_NAME, task.getName());
-        values.put(COL_DESC, task.getDescription());
         values.put(COL_DATE, task.getDate());
         values.put(COL_TIME, task.getTime());
         values.put(COL_DONE, getIntBoolean(task.getDone()));
@@ -94,38 +91,19 @@ public class TaskDB extends SQLiteOpenHelper {
         Task task = new Task();
         task.setId(cursor.getInt(0));
         task.setName(cursor.getString(1));
-        task.setDescription(cursor.getString(2));
-        task.setDate(cursor.getString(3));
-        task.setTime(cursor.getString(4));
-        task.setDone(getBoolean(cursor.getInt(5)));
+        task.setDate(cursor.getString(2));
+        task.setTime(cursor.getString(3));
+        task.setDone(getBoolean(cursor.getInt(4)));
 
         return task;
     }
 
-    public ArrayList<String> readAllDates() {
-        SQLiteDatabase db = getWritableDatabase();
-
-        //formatting
-        Calendar cal = Calendar.getInstance();
-        ArrayList<String> dates = new ArrayList<>();
-
-        String query = "SELECT DISTINCT " + COL_DATE + " FROM " + TABLE + " ORDER BY " + COL_DATE + " ASC";
-        Cursor cursor = db.rawQuery(query, null);
-
-        if ( cursor.moveToFirst() ) {
-            do {
-                dates.add(cursor.getString(0));
-            } while ( cursor.moveToNext() );
-        }
-        return dates;
-    }
-
-    public ArrayList<Task> readAll(String date) {
+    public ArrayList<Task> readAll() {
         SQLiteDatabase db = getWritableDatabase();
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DATE + " = \"" + date + "\"";
+        String query = "SELECT * FROM " + TABLE + " ORDER BY " + COL_NAME;
         Cursor cursor = db.rawQuery(query, null);
 
         if ( cursor.moveToFirst() ) {
@@ -133,10 +111,9 @@ public class TaskDB extends SQLiteOpenHelper {
                 Task task = new Task();
                 task.setId(cursor.getInt(0));
                 task.setName(cursor.getString(1));
-                task.setDescription(cursor.getString(2));
-                task.setDate(cursor.getString(3));
-                task.setTime(cursor.getString(4));
-                task.setDone(getBoolean(cursor.getInt(5)));
+                task.setDate(cursor.getString(2));
+                task.setTime(cursor.getString(3));
+                task.setDone(getBoolean(cursor.getInt(4)));
 
                 tasks.add(task);
             } while ( cursor.moveToNext() );

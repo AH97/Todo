@@ -2,17 +2,13 @@ package neit.alex.androidtaskmanager;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.icu.util.GregorianCalendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,8 +29,10 @@ public class FocusView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_focus_view);
+        setContentView(R.layout.activity_tasks);
         calendar = Calendar.getInstance();
+
+
 
         listView = (ListView) findViewById(R.id.lv_tasks);
 
@@ -43,7 +41,7 @@ public class FocusView extends AppCompatActivity {
         Intent intent = new Intent();
         String selectedDate = getIntent().getStringExtra("selectedDate");
 
-        tasks = db.readAll(selectedDate);
+        tasks = db.readAll();
         tasksAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         for(int i=0; i<tasks.size(); i++) {
             tasksAdapter.add(tasks.get(i).getName());
