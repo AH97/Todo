@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/dueInfo"
-        android:layout_width="81dp"
+        android:layout_width="300dp"
         android:layout_height="21dp"
-        android:layout_marginLeft="93dp"
+        android:layout_marginLeft="68dp"
         android:layout_marginTop="49dp"
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="parent"

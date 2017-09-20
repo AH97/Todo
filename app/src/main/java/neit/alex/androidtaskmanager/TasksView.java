@@ -29,7 +29,7 @@ public class TasksView extends AppCompatActivity {
     static final int TASK_INFO = 20;
 
     TaskDB db;
-    ListView list;
+    ListView listView;
 
     SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
     static ArrayList<Task> tasks;
@@ -54,19 +54,20 @@ public class TasksView extends AppCompatActivity {
         });
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        list = (ListView) findViewById(R.id.tasksView);
+        listView = (ListView) findViewById(R.id.tasksView);
 
         for (int i=0; i<tasks.size(); i++) {
             adapter.add(tasks.get(i).getId() + " " + tasks.get(i).getName() + "\nTask due by " + tasks.get(i).getDate() + " at " + tasks.get(i).getTime());
         }
 
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), TaskInfo.class);
 
-                intent.putExtra("selectedTask", db.read(tasks.get(adapterView.getSelectedItemPosition()+1).getId()));
+                Intent intent = new Intent(getApplicationContext(),TaskInfo.class);
+
+                intent.putExtra("selectedTask", db.read(tasks.get(i).getId()));
                 getApplicationContext().startActivity(intent);
             }
         });

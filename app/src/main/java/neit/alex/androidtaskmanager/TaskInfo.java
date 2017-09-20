@@ -25,10 +25,11 @@ public class TaskInfo extends AppCompatActivity {
         dueInfo = (TextView) findViewById(R.id.dueInfo);
 
         Intent intent = new Intent();
-        Task task = intent.getExtras().getParcelable("selectedTask");
+        task = getIntent().getExtras().getParcelable("selectedTask");
 
+        String info = "Task due by " + task.getDate() + " at " + task.getTime();
         titleView.setText(task.getName());
-        dueInfo.setText("Task due by " + task.getDate().toString() + " at " + task.getTime().toString());
+        dueInfo.setText(info);
     }
 
     @Override
@@ -47,13 +48,21 @@ public class TaskInfo extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_done) {
-
+            db.setDone(task.getId());
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
         else if (id == R.id.menu_edit) {
 
         }
         else if (id == R.id.menu_delete) {
-
+            db.destroy(task.getId());
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

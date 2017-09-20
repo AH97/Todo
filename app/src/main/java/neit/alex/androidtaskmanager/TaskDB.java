@@ -72,10 +72,19 @@ public class TaskDB extends SQLiteOpenHelper {
                             // see the error !
     }
 
-    public void destroy(int id) {
-
+    public int setDone(int id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE + " WHERE " + COL_ID + " = " + id);
+
+        ContentValues values = new ContentValues();
+        values.put(COL_DONE, 1);
+
+        return db.update(TABLE, values, COL_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public int destroy(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        return db.delete(TABLE, COL_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
     public Task read(int id) {
@@ -103,8 +112,8 @@ public class TaskDB extends SQLiteOpenHelper {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE + " ORDER BY " + COL_NAME;
-        Cursor cursor = db.rawQuery(query, null);
+        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DONE + " = ?" + " ORDER BY " + COL_NAME;
+        Cursor cursor = db.query(false, TABLE, new String[]{COL_ID,COL_NAME,COL_DATE,COL_TIME,COL_DONE}, COL_DONE + "=?",new String[]{String.valueOf(0)},null,null,null,null);
 
         if ( cursor.moveToFirst() ) {
             do {
