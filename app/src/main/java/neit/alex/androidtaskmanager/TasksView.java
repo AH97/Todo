@@ -102,7 +102,7 @@ public class TasksView extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 Toast notif = Toast.makeText(this, data.getStringExtra("return"), Toast.LENGTH_SHORT);
-                notif.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+                notif.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
                 notif.show();
 
                 Intent intent = new Intent(getApplicationContext(),TasksView.class);

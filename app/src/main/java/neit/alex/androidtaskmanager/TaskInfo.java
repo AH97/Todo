@@ -61,9 +61,9 @@ public class TaskInfo extends AppCompatActivity {
             startActivity(i);
         }
         else if (id == R.id.menu_edit) {
-            Intent i = new Intent(this, NewTaskForm.class);
-            i.putExtra("taskUpd", task);
-            startActivityForResult(i, TASK_UPD);
+//            Intent i = new Intent(this, EditTaskForm.class);
+//            i.putExtra("upTask", task.getId());
+//            startActivityForResult(i, TASK_UPD);
         }
         else if (id == R.id.menu_delete) {
             db.destroy(task);

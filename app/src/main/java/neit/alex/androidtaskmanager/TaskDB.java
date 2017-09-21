@@ -67,9 +67,16 @@ public class TaskDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Task update(Task task) {
-        return new Task(); //literally just some fucking dummy return so I don't have to
-                            // see the error !
+    public void update(Task task) {
+
+        ContentValues values = new ContentValues();
+        values.put(COL_NAME, task.getName());
+        values.put(COL_DATE, task.getDate());
+        values.put(COL_TIME, task.getTime());
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.update(TABLE, values, COL_ID + " = ?", new String[]{Integer.toString(task.getId())});
+        db.close();
     }
 
     public int setDone(int id) {
