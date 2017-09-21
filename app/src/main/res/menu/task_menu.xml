@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="neit.alex.androidtaskmanager.TasksView">
+    tools:context="neit.alex.androidtaskmanager.Views.TasksView">
     <item
         android:id="@+id/menu_done"
         android:icon="@mipmap/icon_done"

@@ -1,4 +1,4 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,11 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import neit.alex.androidtaskmanager.Scope.Task;
 
 /**
  * Created by Alex on 9/14/2017.
@@ -18,7 +16,7 @@ import java.util.Calendar;
 
 public class TaskDB extends SQLiteOpenHelper {
 
-    private static final int VERSION = 4;
+    private static final int VERSION = 5;
     private static final String DB_NAME = "Tasks.db";
     private static final String TABLE = "tasks";
 
@@ -119,8 +117,30 @@ public class TaskDB extends SQLiteOpenHelper {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE + " WHERE " + COL_DONE + " = ?" + " ORDER BY " + COL_NAME;
         Cursor cursor = db.query(false, TABLE, new String[]{COL_ID,COL_NAME,COL_DATE,COL_TIME,COL_DONE}, COL_DONE + "=?",new String[]{String.valueOf(0)},null,null,null,null);
+
+        if ( cursor.moveToFirst() ) {
+            do {
+                Task task = new Task();
+                task.setId(cursor.getInt(0));
+                task.setName(cursor.getString(1));
+                task.setDate(cursor.getString(2));
+                task.setTime(cursor.getString(3));
+                task.setDone(getBoolean(cursor.getInt(4)));
+
+                tasks.add(task);
+            } while ( cursor.moveToNext() );
+        }
+
+        return tasks;
+    }
+
+    public ArrayList<Task> readAllWithDone() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        Cursor cursor = db.query(false, TABLE, new String[]{COL_ID,COL_NAME,COL_DATE,COL_TIME,COL_DONE}, null,null,null,null,null,null);
 
         if ( cursor.moveToFirst() ) {
             do {

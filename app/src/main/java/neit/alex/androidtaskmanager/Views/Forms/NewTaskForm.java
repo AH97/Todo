@@ -1,4 +1,4 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Views.Forms;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,6 +17,10 @@ import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import neit.alex.androidtaskmanager.R;
+import neit.alex.androidtaskmanager.Scope.Task;
+import neit.alex.androidtaskmanager.Data.TaskDB;
 
 public class NewTaskForm extends AppCompatActivity {
 

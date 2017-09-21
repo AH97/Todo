@@ -1,18 +1,14 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Views;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -21,9 +17,12 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import static android.R.attr.data;
+import neit.alex.androidtaskmanager.Data.TaskDB;
+import neit.alex.androidtaskmanager.R;
+import neit.alex.androidtaskmanager.Scope.Task;
+import neit.alex.androidtaskmanager.Views.Forms.NewTaskForm;
 
-public class TasksView extends AppCompatActivity {
+public class TasksViewWithDone extends AppCompatActivity {
 
     static final int NEW_TASK = 10;
     static final int TASK_INFO = 20;
@@ -39,10 +38,9 @@ public class TasksView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dates);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         db = new TaskDB(this);
-        tasks = db.readAll();
+        tasks = db.readAllWithDone();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +55,7 @@ public class TasksView extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.tasksView);
 
         for (int i=0; i<tasks.size(); i++) {
-            adapter.add(tasks.get(i).getId() + " " + tasks.get(i).getName() + "\nTask due by " + tasks.get(i).getDate() + " at " + tasks.get(i).getTime());
+            adapter.add(tasks.get(i).getName() + "\nTask due by " + tasks.get(i).getDate() + " at " + tasks.get(i).getTime());
         }
 
         listView.setAdapter(adapter);
@@ -88,7 +86,7 @@ public class TasksView extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_settings) {
+        if (id == R.id.menu_show_done) {
 
         }
 
@@ -105,7 +103,7 @@ public class TasksView extends AppCompatActivity {
                 notif.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
                 notif.show();
 
-                Intent intent = new Intent(getApplicationContext(),TasksView.class);
+                Intent intent = new Intent(getApplicationContext(),TasksViewWithDone.class);
                 getApplicationContext().startActivity(intent);
             }
         }

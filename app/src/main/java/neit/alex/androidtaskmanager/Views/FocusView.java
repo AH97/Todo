@@ -1,4 +1,4 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Views;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -12,6 +12,10 @@ import android.widget.ListView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import neit.alex.androidtaskmanager.R;
+import neit.alex.androidtaskmanager.Scope.Task;
+import neit.alex.androidtaskmanager.Data.TaskDB;
 
 public class FocusView extends AppCompatActivity {
 

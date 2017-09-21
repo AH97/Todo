@@ -1,12 +1,10 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Scope;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by alex on 9/14/17.

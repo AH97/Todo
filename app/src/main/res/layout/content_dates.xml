@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="neit.alex.androidtaskmanager.TasksView"
+    tools:context="neit.alex.androidtaskmanager.Views.TasksView"
     tools:showIn="@layout/activity_dates"
     android:orientation="vertical">
 

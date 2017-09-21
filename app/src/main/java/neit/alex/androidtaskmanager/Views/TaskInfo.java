@@ -1,14 +1,15 @@
-package neit.alex.androidtaskmanager;
+package neit.alex.androidtaskmanager.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import neit.alex.androidtaskmanager.R;
+import neit.alex.androidtaskmanager.Scope.Task;
+import neit.alex.androidtaskmanager.Data.TaskDB;
 
 public class TaskInfo extends AppCompatActivity {
 
@@ -33,7 +34,14 @@ public class TaskInfo extends AppCompatActivity {
         taskId = getIntent().getExtras().getInt("selectedTask");
         task = db.read(taskId);
 
-        String info = "Task due by " + task.getDate() + " at " + task.getTime();
+        String info;
+        if ( !task.getDone() ) {
+            info = "Task due by " + task.getDate() + " at " + task.getTime();
+        }
+        else {
+            info = "This item has been completed";
+        }
+
         titleView.setText(task.getName());
         dueInfo.setText(info);
     }
